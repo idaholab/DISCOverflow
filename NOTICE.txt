@@ -1,6 +1,6 @@
 ﻿This project contains code from Idaho National Laboratory.
 Github IdahoLab/DISCOverflow
-Licensed underEPL 2.0 part license.
+Licensed under EPL 2.0 part license.
 
 
 © 2021 Battelle Energy Alliance, LLC
