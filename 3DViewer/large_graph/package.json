@@ -1,7 +1,7 @@
 {
-  "name": "DiscoverFlow",
-  "version": "1.0.0",
-  "description": "3d Visualization of Graphs for Firmware Indicator Translation",
+  "name": "discoverflow_3d_dissassembly_visualization_large_graph",
+  "version": "0.0.1",
+  "description": "3d Visualization of Graphs for @DisCo databases",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -19,7 +19,7 @@
   ],
   "author": "Andrei Kashcha",
   "contributors": "Zachary Priest",
-  "license": "MIT",
+  "license": "EPL-2.0",
   "bugs": {
     "url": ""
   },

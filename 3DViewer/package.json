@@ -1,6 +1,6 @@
 {
   "name": "discoverflow_3d_dissassembly_visualization",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Packages to visualize graphs of reverse-engineered code for @DisCo.",
   "main": "getData.js",
   "scripts": {
@@ -13,7 +13,7 @@
   },
   "keywords": [],
   "author": "zachary priest <zachary.priest@inl.gov>",
-  "license": "BSD-3",
+  "license": "EPL-2.0",
   "bugs": {
     "url": "https://github.com/idaholab/DISCOverflow/-/issues"
   },

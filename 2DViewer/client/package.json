@@ -1,8 +1,8 @@
 {
   "name": "discoverflow_2d_dissassembly_visualization_client",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "A web page with a text editor for ELK Graph and a synchronized graphical view",
-  "license": "EPL-1.0",
+  "license": "EPL-2.0",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.8",
