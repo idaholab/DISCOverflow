@@ -1,0 +1,40 @@
+<!--- Copyright 2021, Battelle Energy Alliance, LLC 
+-->
+<!DOCTYPE html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+    <meta charset="utf-8"/>
+    <title>Call graph Viz</title>
+
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+
+    <script type="text/javascript" src = "load.js"></script>
+    <script src="./3d-force-graph.min.js"></script>
+</head>
+
+<body>
+
+<div id="loader">
+  <div id="loader2"
+  <form id="jsonFile" class="overlay" name="jsonFile" enctype="multipart/form-data" method="post">
+
+    <fieldset>
+      <h2>Select File | Change View</h2>
+       <input type='file' id='fileinput'>
+       <input type='button' id='btnLoad' value='Load' onclick='loadFile()'>
+       <input type='button' id='changeView' value='Change View' onclick='ChangeView()'>
+    </fieldset>
+  </form>
+  </div>
+
+  <div id="cy" display="block">
+  </div>
+  <div id="graph" display="none">
+  </div>
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DISCOverflow 3D Dissassembly Visualization</title>
+  <link rel="icon" type="image/svg+xml" href="img/elk_fav.svg">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="sprotty/sprotty.css">
+  <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="diagram.css">
+  <style>
+    body {
+      overflow: hidden;
+      min-height: 100vh;
+    }
+
+    #autocomplete {
+      width: 100%;
+      height: 100%;
+    }
+
+    #error {
+      display: none;
+    }
+
+  </style>
+</head>
+
+<body class="d-flex flex-column">
+  <nav class="navbar navbar-expand-sm navbar-default flex-nowrap">
+    <span class="navbar-brand mb-0 h2">DISCOverFlow</span><p></p>
+    <!-- <div id="error" class="navbar-text mx-2 my-2 my-sm-0 p-1 alert alert-danger"></div>
+    <div id="loading" class="mx-2 flex-shrink-0 loading" style="position: relative; display: none;"></div> -->
+
+    <div class="input-group">
+      <input type="text" id="dbhost-input" class="form-control mb-4" placeholder="DB Host" value="127.0.0.1">
+      <button id="button-connect" class="btn btn-secondary mb-4">Connect</button>
+
+    </div>
+    <div class="input-group">
+      <select id="select-database" class="form-control mb-4">
+        <option>First Connect To DB</option>
+      </select>
+      <select id="select-library" class="form-control mb-4">
+        <option>First Select a Database</option>
+      </select>
+      <select id="select-function" class="form-control mb-4">
+        <option>Select a Binary</option>
+      </select>
+      <button id="button-query" class="btn btn-secondary mb-4"
+      data-content="Plot the chose function.">
+      GO
+    </button>
+    </div>
+
+    <div class="flex-grow-1">
+      <button id="button-clear" class="btn btn-secondary mb-4"
+        data-content="Remove all nodes from the diagram and start from scratch.">
+        Clear
+      </button>
+    </div>
+    <div class="nav-item dropdown">
+      <a class=" dropdown-toggle btn btn-secondary mb-4" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Auth
+      </a>
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+        User<input type="text" id="dbuser-input" class="form-control" placeholder="User" value="root">
+        Pass<input type="password" id="dbpass-input" class="form-control" placeholder="Pass" value="pass">
+      </div>
+    </div>
+    <div id="loading-indicator" class="indicator-icon" style="visibility: hidden;">
+      <i class="fas fa-spinner fa-spin fa-2x"></i>
+    </div>
+    <div id="error-indicator" class="indicator-icon" style="visibility: hidden;">
+      <i class="fas fa-exclamation-circle fa-2x"></i>
+    </div>
+  </nav>
+
+  <div class="container-fluid flex-fill d-flex px-4 py-2 border-top">
+    <div class="row flex-fill">
+      <div id="sprotty" class="w-100 h-100"></div>
+    </div>
+  </div>
+
+  <footer class="footer border-top p-3">
+  </footer>
+
+  <script src="jquery/jquery.slim.min.js"></script>
+  <script src="jquery-autocomplete/jquery.autocomplete.min.js"></script>
+  <script src="cfg.bundle.js"></script>
+  <!-- <script src="bootstrap/js/bootstrap.min.js"></script> -->
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+{
+  "name": "discoverflow_2d_dissassembly_visualization_client",
+  "version": "0.1.0",
+  "description": "A web page with a text editor for ELK Graph and a synchronized graphical view",
+  "license": "EPL-1.0",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome": "^1.1.8",
+    "@fortawesome/fontawesome-free-brands": "^5.0.13",
+    "@fortawesome/fontawesome-free-solid": "^5.0.13",
+    "devbridge-autocomplete": "^1.4.10",
+    "elkjs-latest": "npm:elkjs@latest",
+    "jquery": "^3.4.0",
+    "js-base64": "^3.4.5",
+    "json5": "^2.1.0",
+    "lz-string": "^1.4.4",
+    "monaco-editor-core": "^0.14.6",
+    "monaco-languageclient": "^0.9.0",
+    "popper.js": "^1.16.1",
+    "reconnecting-websocket": "^4.1.10",
+    "showdown": "^1.9.1",
+    "sprotty": "^0.8.0",
+    "sprotty-elk": "^0.8.0",
+    "ts-debounce": "^2.0.1",
+    "vscode-ws-jsonrpc": "^0.0.2-1",
+    "web-threads": "^1.0.92",
+    "web-worker": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/bootstrap": "^4.5.0",
+    "@types/jquery": "^3.3.38",
+    "@types/node": "10.14.4",
+    "bootstrap": "^4.4.0",
+    "copy-webpack-plugin": "^6.0.3",
+    "globby": "^11.0.1",
+    "html-webpack-plugin": "^4.3.0",
+    "node-fetch": "^2.6.0",
+    "reflect-metadata": "^0.1.13",
+    "rimraf": "^3.0.2",
+    "source-map-loader": "^1.0.1",
+    "tsc-watch": "^4.2.9",
+    "typescript": "^3.4.3",
+    "uglify-loader": "^3.0.0",
+    "umd-compat-loader": "^2.1.1",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  },
+  "resolutions": {
+    "**/**/kind-of": "^6.0.3",
+    "**/**/lodash": "^4.17.12",
+    "**/**/mem": "^4.0.0",
+    "**/**/minimist": "^1.2.3",
+    "**/**/serialize-javascript": "^2.1.1",
+    "**/**/set-value": "^3.0.2"
+  },
+  "scripts": {
+    "compile": "tsc",
+    "clean": "rimraf lib app/bootstrap app/jquery app/sprotty app/vs app/*.bundle.js app/*.bundle.js.map elk-models app/elk-models",
+    "build": "yarn clean &&  yarn compile && webpack --env.production",
+    "build:dev": "yarn compile && webpack",
+    "watch": "tsc-watch --onSuccess webpack"
+  }
+}

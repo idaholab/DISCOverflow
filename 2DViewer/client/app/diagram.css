@@ -1,0 +1,133 @@
+.elknode {
+    stroke: #448;
+    stroke-width: 1;
+    fill: #ddf;
+}
+
+.elknode-block {
+    stroke: rgb(68, 126, 136);
+    stroke-width: 1;
+    fill: rgb(221, 255, 255);
+}
+
+.elknode-function {
+    stroke: rgb(29, 153, 5);
+    stroke-width: 1;
+    fill: rgba(250, 255, 240, 0.473);
+}
+
+.elknode-binary {
+    stroke: rgb(182, 88, 0);
+    stroke-width: 1;
+    fill: rgba(250, 249, 248, 0.685);
+}
+
+
+.elkport {
+    stroke: #448;
+    stroke-width: 1;
+    fill: #66c;
+}
+
+.elkedge {
+    fill: none;
+    stroke: #224;
+    stroke-width: 1;
+}
+
+
+.elkedge.arrow {
+    fill: #336;
+}
+
+.edge-calls {
+    fill: none;
+    stroke: rgb(255, 0, 242);
+    stroke-width: 1;
+    /* stroke-opacity: 50%; */
+}
+
+.edge-calls.arrow {
+    fill: rgb(255, 0, 242);
+    /* fill-opacity: inherit; */
+    /* stroke-opacity: 50%; */
+}
+
+.edge-function_return {
+    fill: none;
+    stroke: rgb(117, 44, 160);
+    stroke-width: 1;
+    /* stroke-opacity: 50%; */
+}
+
+.edge-function_return.arrow {
+    fill: rgb(117, 44, 160);
+    /* fill-opacity: inherit; */
+    /* stroke-opacity: 50%; */
+}
+
+.edge-branch_true {
+    fill: none;
+    stroke: rgb(46, 185, 46);
+    stroke-width: 1;
+    /* stroke-opacity: 50%; */
+}
+.edge-branch_true.arrow {
+    fill: rgb(46, 185, 46);
+    /* fill-opacity: inherit; */
+    /* stroke-opacity: 50%; */
+}
+
+.edge-branch_false {
+    fill: none;
+    stroke: rgb(255, 0, 0);
+    stroke-width: 1;
+    /* stroke-opacity: 50%; */
+}
+.edge-branch_false.arrow {
+    fill: rgb(255,0,0);
+    /* fill-opacity: inherit; */
+    /* stroke-opacity: 50%; */
+}
+
+.edge-branch_unconditional {
+    fill: none;
+    stroke: rgb(0, 119, 255);
+    stroke-width: 1;
+    /* stroke-opacity: 50%; */
+}
+.edge-branch_unconditional.arrow {
+    fill: rgb(0, 119, 255);
+    /* fill-opacity: inherit; */
+    /* stroke-opacity: 50%; */
+}
+
+
+.elklabel {
+    stroke-width: 0;
+    stroke: #000;
+    fill: #000;
+    font-family: sans-serif;
+    font-size: 10pt;
+    dominant-baseline: hanging;
+}
+
+.elkjunction {
+    stroke: none;
+    fill: #224;
+}
+
+.selected > rect {
+    stroke-width: 3;
+}
+
+.selected > path {
+    stroke-width: 3;
+    /* stroke-opacity: 1; */
+}
+
+.mouseover {
+    /* stroke: #88f; */
+    stroke-width: 2;
+
+}

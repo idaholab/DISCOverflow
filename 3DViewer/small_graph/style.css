@@ -1,0 +1,57 @@
+body {
+    font-family: helvetica, serif;
+    font-size: 14px;
+}
+
+#graph{
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    width: 100%;
+    height: 87%;
+    z-index: 1;
+}
+#cy {
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    width: 100%;
+    height: 87%;
+    z-index: 1;
+}
+.overlay {
+    position: absolute;
+    z-index: 10;
+}
+
+#lib-name {
+    font-family: monospace;
+    color: black;
+    opacity: 0.8;
+}
+/* #graph > div {
+    position: absolute;
+}
+
+#graph > div > div:nth-child(1) > div {
+    position: absolute;
+} */
+/* 
+#graph > div > div:nth-child(1) > div > canvas {
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    width: 100%;
+    height:700px;
+    z-index: 1;
+
+}
+*/
+#graph > div > div:nth-child(1) > div > div.scene-nav-info {
+
+}
+#loader2{
+  position: fixed;
+  bottom:0;
+  width:100%
+} 
