@@ -81,12 +81,6 @@ module.exports = async function (env) {
             }
         },
         devtool: 'source-map',
-        node: {
-            fs: 'empty',
-            child_process: 'empty',
-            net: 'empty',
-            crypto: 'empty'
-        },
         plugins: [
             new CopyWebpackPlugin({
                 patterns: [
