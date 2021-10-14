@@ -19,7 +19,7 @@ function getLinksBuffer(graph, labels) {
   //console.log("final nodeMap: ",nodeMap);
   var linksCount = graph.getLinksCount();
   //console.log("our links Count before writing: ", linksCount);
-  var buf = new Buffer((labels.length + linksCount) * 4);
+  var buf = new Buffer.alloc((labels.length + linksCount) * 4);
   var idx = 0;
 
   graph.forEachNode(function(node) {
