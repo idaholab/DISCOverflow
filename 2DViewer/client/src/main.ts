@@ -14,6 +14,7 @@ import { AngrDB, GraphQueryResult, DiscoNodeType, DiscoLibrary, RID_T, DiscoFunc
 import { DiscoModelSource } from './disco-model-source';
 import { ElkFactory } from 'sprotty-elk';
 import elkFactory from './elk-webworker';
+import * as crypto from 'crypto-js'
 
 fontawesome.library.add(faSpinner, faExclamationCircle, faGithub, faBars);
 
@@ -86,9 +87,6 @@ interface name_rid {
     rid: RID_T;
 }
 
-
-
-
 let USER = 'root';
 let PASS = 'root';
 let DBHOST = "127.0.0.1";
@@ -103,6 +101,9 @@ connectButton.click(() => {
     USER = dbuserInput.val() as string;
     PASS = dbpassInput.val() as string;
     dbconnection = new AngrDB(DBHOST, USER, PASS);
+
+    setDBCookieData({DBHOST: DBHOST, USER: USER, PASS: PASS})
+
     clear_dbinput();
     clear_libinput();
     clear_funcinput();
@@ -187,6 +188,10 @@ function createDBSelect(databases: string[]) {
             libraryInput.selectedIndex = 0;
             libraryInput.focus();
         });
+
+        let dbinfo = getDBCookieData()
+        dbinfo["DATABASE"] = DATABASE
+        setDBCookieData(dbinfo)
     });
 };
 
@@ -215,6 +220,11 @@ function createLibSelect(libraries: name_rid[]) {
             console.log('setting up functioninput');
             createFuncSelect(functions);
         });
+
+
+        let cookieData = getDBCookieData()
+        cookieData["librid"] = librid
+        setDBCookieData(cookieData)
     });
     jQuery('#select-library').change(() => {
         // const librid = libraries[libraryInput.selectedIndex].rid;
@@ -229,6 +239,10 @@ function createLibSelect(libraries: name_rid[]) {
             console.log('setting up functioninput');
             createFuncSelect(functions);
         });
+
+        let cookieData = getDBCookieData()
+        cookieData["librid"] = librid
+        setDBCookieData(cookieData)
         
     });
 };
@@ -256,6 +270,11 @@ function func_selected(func_name, function_id) {
         dbconnection.traverseFromFunction(function_id).then((graph_query_result: GraphQueryResult) => {
             modelSource.runCFGDiagram(DATABASE, graph_query_result, func_name);
         });
+
+        let cookieData = getDBCookieData()
+        cookieData['func_name'] = func_name
+        cookieData['function_id'] = function_id
+        setDBCookieData(cookieData)
     } catch (err) {
         setErrorMessage(err);
         console.error(err);
@@ -283,6 +302,96 @@ jQuery('#select-function').keyup(event => {
     }
 });
 
+
+const COOKIE_SECRET = 'apk@djcn4uin^inc(ajnw99haq'
+
+function getDBCookieData() {
+    let cookie = decodeURIComponent(document.cookie)
+    let cookieString = crypto.AES.decrypt(cookie.substring("dbinfo=".length, cookie.length), COOKIE_SECRET).toString(crypto.enc.Utf8)
+    console.log(cookieString)
+
+    let dbinfo = JSON.parse(cookieString)
+
+    return dbinfo
+}
+
+function setDBCookieData(data) {
+    // Save information in cookie
+    let cookieString = crypto.AES.encrypt(JSON.stringify(data), COOKIE_SECRET)
+    let expDate = new Date();
+    expDate.setTime(expDate.getTime() + (30*24*60*60*1000)) // Set cookie for 30 days
+    //console.log(cookieString.toString())
+    document.cookie = `dbinfo=${cookieString};expires=${expDate.toUTCString()};path=/;SameSite=Strict;`
+    //console.log(decodeURIComponent(document.cookie))
+}
+
+
+window.onload = () => {
+    let dbinfo = getDBCookieData()
+
+    dbconnection = new AngrDB(dbinfo.DBHOST, dbinfo.USER, dbinfo.PASS)
+    dbconnection.get_databases().then((result: string[]) => {
+        createDBSelect(result);
+        databaseInput.selectedIndex = 0;
+        if (dbinfo.DATABASE) {
+            //Get index of database
+            for (var i = 0; i < databaseInput.options.length; ++i) {
+                if (databaseInput.options[i].value === dbinfo.DATABASE) {
+                    databaseInput.selectedIndex = i;
+                }
+            }
+    
+            dbconnection.connect(dbinfo.DATABASE)
+    
+            clear_libinput();
+            clear_funcinput();
+            dbconnection.getLibraries().then((result: DiscoLibrary[]) => {
+                let libraries: name_rid[] = [];
+                for (const l of result.sort(sort_by_name)) {
+                    libraries.push({ name: l.name, rid: l["@rid"] });
+                }
+                createLibSelect(libraries);                
+
+                libraryInput.selectedIndex = 0;
+                libraryInput.focus();
+
+                if (dbinfo.librid) {
+                    for (var i = 0; i < libraryInput.options.length; ++i) {
+                        if (libraryInput.options[i].value === dbinfo.librid) {
+                            libraryInput.selectedIndex = i
+                        }
+                    }
+                    
+                    dbconnection.getFunctions(dbinfo.librid).then((result: DiscoFunction[]) => {
+                        let functions: name_rid[] = [];
+                        for (const l of result.sort(sort_by_name)) {
+                            functions.push({ name: l.name, rid: l["@rid"] });
+                        }
+                        
+                        console.log('setting up functioninput');
+                        createFuncSelect(functions);
+
+                        if (dbinfo.func_name && dbinfo.function_id) {
+                            
+                            for (var i = 0; i < functionInput.options.length; ++i) {
+                                if (functionInput.options[i].value === dbinfo.function_id) {
+                                    functionInput.selectedIndex = i
+                                }
+                            }
+
+                            goButton.click()
+                        }
+                        
+                    });
+                }
+                
+            });
+        }
+    });
+    databaseInput.focus();
+
+    
+}
 
 
 $(window).resize(refreshLayout);

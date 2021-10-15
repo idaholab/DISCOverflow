@@ -73,7 +73,7 @@ function save(graph, options) {
       nodeFile: options.labels,
       linkFile: options.links,
       dataFile: options.data,
-      version: require(path.join(__dirname, 'package.json')).version
+      //version: require(path.join(__dirname, 'package.json')).version
     };
   }
 

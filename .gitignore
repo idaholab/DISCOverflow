@@ -23,6 +23,8 @@ deps
 3DViewer/largegraph_data/*
 !3DViewer/largegraph_data/.gitkeep
 
+3DViewer/large_graph/src/routes.json
+
 3DViewer/smallgraph_data/*
 !3DViewer/smallgraph_data/.gitkeep
 
