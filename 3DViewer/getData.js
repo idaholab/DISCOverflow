@@ -176,7 +176,7 @@ const query = async function(db) {
 		});
 
 		try{
-			let session = await client.session({ name: db, username: "root", password: "temppass" });
+			let session = await client.session({ name: db, username: "root", password: "pass" });
 
 			try{
 				await ensureDir(dirpath);
@@ -289,6 +289,25 @@ const begin = async function() {
 		//create ngraph structure for static view
 		var ret = await createBinaryNGraph(dataBase1, merged);
 		console.log('we have finished with code', ret);
+
+		// Add database to the list of routes in large_graph
+		fs.readFile('large_graph/src/routes.json', (err, data) => {
+			if (err) {
+				console.error(err)
+			} else {
+				let json = data.toString()
+
+				let routes = JSON.parse(json)
+				if (!routes.includes(dataBase1)) {
+					routes.push(dataBase1)
+
+					json = JSON.stringify(routes)
+
+					fs.writeFile('large_graph/src/routes.json', json, () => {console.log(`Added route "${dataBase1}" to large_graph`)})
+				}
+				
+			}
+		})
 	}else{
 		//console.log("Must enter one to two database names to extract information from in the following format:");
 		console.log("Must enter a database name to extract information out of:");

@@ -2,7 +2,7 @@ import scene from './store/scene.js';
 import React from 'react';
 import hoverModel from './store/hover.js';
 
-module.exports = require('maco')(hoverInfo, React);
+let HoverInfo = require('maco')(hoverInfo, React);
 
 function hoverInfo(x) {
   var hoverTemplate = null;
@@ -24,3 +24,5 @@ function hoverInfo(x) {
     x.forceUpdate();
   }
 }
+
+export default HoverInfo;

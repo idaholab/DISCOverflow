@@ -1,7 +1,7 @@
 /**
  * This is the Webpack configuration file for production.
  */
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 var path = require('path');
 var webpack = require('webpack');
 
@@ -14,13 +14,20 @@ module.exports = {
   },
 
   module: {
-    loaders: [{
+    rules: [{
       test: /\.jsx?$/,
       exclude: /node_modules/,
-      loader: "babel-loader"
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: [
+            ['@babel/preset-env', { targets: "defaults" }]
+          ]
+        }
+      }
     }, {
       test: /\.less$/,
-      loader: ExtractTextPlugin.extract('css-loader!less-loader')
+      loader: MiniCssExtractPlugin.extract('css-loader!less-loader')
     }, {
       test: /\.(woff|woff2|eot|ttf|svg)$/,
       loader: 'url-loader?limit=1&name=[name].[ext]'
@@ -28,7 +35,7 @@ module.exports = {
   },
 
   plugins: [
-    new ExtractTextPlugin('styles.css', { allChunks: true }),
+    new MiniCssExtractPlugin(),
     new webpack.optimize.DedupePlugin()
   ],
   resolveLoader: {

@@ -3,7 +3,7 @@ import detailModel from './nodeDetailsStore.js';
 import specialNodeDetails from './templates/all.js';
 import scene from '../store/scene.js';
 
-module.exports = require('maco')(detailedNodeView, React);
+let DetailedNodeView = require('maco')(detailedNodeView, React);
 
 function detailedNodeView(x) {
   x.render = function () {
@@ -35,3 +35,5 @@ function detailedNodeView(x) {
     x.forceUpdate();
   }
 }
+
+export default DetailedNodeView;
