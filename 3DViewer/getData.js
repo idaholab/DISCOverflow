@@ -13,7 +13,6 @@ var createBinaryNGraph = require('./createBinaryGraph.js');
 var startTime = process.hrtime();
 var debug = true;
 
-
 let vertices = '';
 let edges='';
 var dataBase1 = process.argv[2];
@@ -291,23 +290,28 @@ const begin = async function() {
 		console.log('we have finished with code', ret);
 
 		// Add database to the list of routes in large_graph
-		fs.readFile('large_graph/src/routes.json', (err, data) => {
-			if (err) {
-				console.error(err)
-			} else {
-				let json = data.toString()
+		const routesFile = "large_graph/src/routes.json"
+		if (fs.existsSync(routesFile)) {
+			fs.readFile(routesFile, (err, data) => {
+				if (err) {
+					console.error(err)
+				} else {
+					let json = data.toString()
 
-				let routes = JSON.parse(json)
-				if (!routes.includes(dataBase1)) {
-					routes.push(dataBase1)
+					let routes = JSON.parse(json)
+					if (!routes.includes(dataBase1)) {
+						routes.push(dataBase1)
 
-					json = JSON.stringify(routes)
+						json = JSON.stringify(routes)
 
-					fs.writeFile('large_graph/src/routes.json', json, () => {console.log(`Added route "${dataBase1}" to large_graph`)})
+						fs.writeFile(routesFile, json, () => {console.log(`Added route "${dataBase1}" to large_graph`)})
+					}
+					
 				}
-				
-			}
-		})
+			})
+		} else {
+			fs.writeFile(routesFile, JSON.stringify([dataBase1]), () => {console.log(`Added route "${dataBase1}" to large_graph`)})
+		}
 	}else{
 		//console.log("Must enter one to two database names to extract information from in the following format:");
 		console.log("Must enter a database name to extract information out of:");

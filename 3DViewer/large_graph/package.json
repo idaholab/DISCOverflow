@@ -41,6 +41,7 @@
     "bootstrap": "^3.3.4",
     "css-loader": "^6.4.0",
     "history": "^1.17.0",
+    "json-loader": "^0.5.7",
     "keymirror": "^0.1.1",
     "less": "^4.1.2",
     "less-loader": "^10.1.0",
