@@ -2,14 +2,13 @@
 var webpack = require('webpack');
 var path = require('path');
 
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 // Where to listen for the dev server
 var port = process.env.PORT || 8081;
 
 // For more information, see: http://webpack.github.io/docs/configuration.html
 module.exports = {
-  port: port,
 
   // Efficiently evaluate modules with source maps
   devtool: "eval",
@@ -31,29 +30,32 @@ module.exports = {
 
   // Transform source code using Babel and React Hot Loader
   module: {
-    loaders: [{
+    rules: [{
       test: /\.jsx?$/,
       include: path.join(__dirname, "src"),
-      loaders: ["react-hot", "babel-loader"]
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: [
+            ['@babel/preset-react', { targets: "defaults" }]
+          ]
+        }
+      }
     }, {
       test: /\.less$/,
-      loader: ExtractTextPlugin.extract('css!less')
+      use: [MiniCssExtractPlugin.loader, "css-loader", "less-loader"]
     }, {
       test: /\.(woff|woff2|eot|ttf|svg)$/,
-      loader: 'url-loader?limit=1&name=[name].[ext]'
-    }, {
-      test: /\.json$/,
-      loader: 'json-loader'
+      use: 'url-loader?limit=1&name=[name].[ext]'
     }]
   },
 
   // Necessary plugins for hot load
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     // extract inline css into separate 'styles.css'
-    new ExtractTextPlugin('styles.css', {allChunks: true}),
-    new webpack.optimize.DedupePlugin()
+    new MiniCssExtractPlugin()
   ],
 
   // Automatically transform files with these extensions
