@@ -4,7 +4,7 @@ import resource from '../utils/resources.js';
 var maco = require('maco');
 registerDataTemplates();
 
-module.exports = maco.template(windowTitle, React);
+let WindowTitle = maco.template(windowTitle, React);
 
 var ContentControl = maco(contentControl, React);
 
@@ -62,3 +62,5 @@ function registerDataTemplates() {
     );
   }, React));
 }
+
+export default WindowTitle;

@@ -275,19 +275,19 @@ const begin = async function() {
 	if(dataBase1 && dataBase2){
 		await startCompare(dirpath, dataBase1, dataBase2);
 	}else if(dataBase1 && !process.argv[3]){
-		// let fileName = dirpath + '/' + dataBase1 + '.json';
+		let fileName = dirpath + '/' + dataBase1 + '.json';
 
-		// //query the database, merge vertex with edges
-		// let merged = await query(dataBase1);
+		//query the database, merge vertex with edges
+		let merged = await query(dataBase1);
 
-		// merged = merged.toString();
-		// // fileName = fileName.toString();
-		// //save the file/Users/priezm/repos/fitviz/getData.js
-		// await saveFile(fileName, merged);
+		merged = merged.toString();
+		// fileName = fileName.toString();
+		//save the file/Users/priezm/repos/fitviz/getData.js
+		await saveFile(fileName, merged);
 
-		// //create ngraph structure for static view
-		// var ret = await createBinaryNGraph(dataBase1, merged);
-		// console.log('we have finished with code', ret);
+		//create ngraph structure for static view
+		var ret = await createBinaryNGraph(dataBase1, merged);
+		console.log('we have finished with code', ret);
 
 		// Add database to the list of routes in large_graph
 		const routesFile = "large_graph/src/routes.json"

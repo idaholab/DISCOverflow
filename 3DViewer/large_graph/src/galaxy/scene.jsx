@@ -15,7 +15,8 @@ import createKeyboardBindings from './native/sceneKeyboardBinding.js';
 
 import appEvents from './service/appEvents.js';
 var webglEnabled = require('webgl-enabled')();
-module.exports = require('maco')(scene, React);
+
+let Scene = require('maco')(scene, React);
 
 function scene(x) {
   var nativeRenderer, keyboard;
@@ -76,3 +77,5 @@ function scene(x) {
     }
   }
 }
+
+export default Scene;

@@ -9,6 +9,13 @@ var port = process.env.PORT || 8081;
 
 // For more information, see: http://webpack.github.io/docs/configuration.html
 module.exports = {
+  mode: "development",
+
+  devServer: {
+    port: 8081,
+    historyApiFallback: true,
+    static: path.join(__dirname, 'build')
+  },
 
   // Efficiently evaluate modules with source maps
   devtool: "eval",
@@ -23,7 +30,7 @@ module.exports = {
   // This will not actually create a bundle.js file in ./build. It is used
   // by the dev server for dynamic hot loading.
   output: {
-    path: __dirname + "/build/",
+    path: path.join(__dirname, 'build'),
     filename: "app.js",
     publicPath: "/"
   },
@@ -44,18 +51,15 @@ module.exports = {
     }, {
       test: /\.less$/,
       use: [MiniCssExtractPlugin.loader, "css-loader", "less-loader"]
-    }, {
-      test: /\.(woff|woff2|eot|ttf|svg)$/,
-      use: 'url-loader?limit=1&name=[name].[ext]'
-    }]
+    }
+  ]
   },
 
   // Necessary plugins for hot load
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     // extract inline css into separate 'styles.css'
-    new MiniCssExtractPlugin()
+    new MiniCssExtractPlugin({filename: 'styles.css'})
   ],
 
   // Automatically transform files with these extensions

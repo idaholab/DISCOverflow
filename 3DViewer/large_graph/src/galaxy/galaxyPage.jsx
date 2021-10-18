@@ -3,7 +3,7 @@ import LoadingIndicator from './loadingIndicator.jsx';
 import Scene from './scene.jsx';
 import appEvents from './service/appEvents.js';
 
-module.exports = require('maco')(galaxyPage, React);
+let GalaxyPage = require('maco')(galaxyPage, React);
 
 function galaxyPage(x) {
   var currentPath;
@@ -30,3 +30,5 @@ function galaxyPage(x) {
     appEvents.queryChanged.fire();
   }
 }
+
+export default GalaxyPage;

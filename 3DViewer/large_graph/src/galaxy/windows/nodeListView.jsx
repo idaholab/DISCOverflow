@@ -8,7 +8,7 @@ import ReactList from 'react-list';
 import WindowTitle from './windowTitle.jsx';
 import NodeInfoRow from './nodeInfoRow.jsx';
 
-module.exports = require('maco')(nodeListView, React);
+let NodeListView = require('maco')(nodeListView, React);
 var windowId = 0;
 
 function nodeListView(x) {
@@ -57,3 +57,5 @@ function nodeListView(x) {
     }
   };
 }
+
+export default NodeListView;

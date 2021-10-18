@@ -1,7 +1,7 @@
 import React from 'react';
 import scene from './store/scene.js';
 
-module.exports = require('maco')(loadingIndicator, React);
+let LoadingIndicator = require('maco')(loadingIndicator, React);
 
 function loadingIndicator(x) {
   var loadingMessage = '';
@@ -25,3 +25,5 @@ function loadingIndicator(x) {
     x.forceUpdate();
   }
 }
+
+export default LoadingIndicator;

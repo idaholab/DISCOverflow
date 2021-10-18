@@ -6,8 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "mkdir -p ./build && cp ./src/index.html ./build/ && webpack -p --config webpack.production.config.js",
-    "start": "PORT=8081 node dev-server.js",
-    "test-start": "npx webpack serve -c ./webpack.local.config.js --color --port 8081 --hot true --progress --mode development"
+    "start": "npx webpack serve -c ./webpack.local.config.js"
   },
   "repository": {
     "type": "git",
@@ -46,6 +45,7 @@
     "history": "^1.17.0",
     "keymirror": "^0.1.1",
     "maco": "^2.0.3",
+    "mini-css-extract-plugin": "^2.4.2",
     "ngraph.events": "0.0.3",
     "node-libs-browser": "^0.5.0",
     "qs": "^4.0.0",

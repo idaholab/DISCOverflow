@@ -5,7 +5,7 @@ import React from 'react';
 import NodeListView from './nodeListView.jsx';
 import windowCollectionModel from './windowCollectionModel.js';
 
-module.exports = require('maco')(windowCollectionView, React);
+let WindowCollectionView = require('maco')(windowCollectionView, React);
 
 function windowCollectionView(x) {
   x.render = function () {
@@ -31,3 +31,5 @@ function windowCollectionView(x) {
     x.forceUpdate();
   }
 }
+
+export default WindowCollectionView;
