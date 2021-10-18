@@ -291,7 +291,9 @@ const begin = async function() {
 
 		// Add database to the list of routes in large_graph
 		const routesFile = "large_graph/src/routes.json"
+		// Check if the routes file exists
 		if (fs.existsSync(routesFile)) {
+			// If it does, read the existing data
 			fs.readFile(routesFile, (err, data) => {
 				if (err) {
 					console.error(err)
@@ -300,6 +302,7 @@ const begin = async function() {
 
 					let routes = JSON.parse(json)
 					if (!routes.includes(dataBase1)) {
+						// If dataBase1 doesn't already exist in the routes file, add it
 						routes.push(dataBase1)
 
 						json = JSON.stringify(routes)
@@ -310,6 +313,7 @@ const begin = async function() {
 				}
 			})
 		} else {
+			// If the routes file does not exist, create it and add the value of dataBase1 to it.
 			fs.writeFile(routesFile, JSON.stringify([dataBase1]), () => {console.log(`Added route "${dataBase1}" to large_graph`)})
 		}
 	}else{
