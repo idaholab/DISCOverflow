@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "mkdir -p ./build && cp ./src/index.html ./build/ && webpack -p --config webpack.production.config.js",
-    "start": "PORT=8081 node dev-server.js"
+    "start": "npx webpack serve -c ./webpack.local.config.js"
   },
   "repository": {
     "type": "git",
@@ -25,28 +25,30 @@
   },
   "homepage": "",
   "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "@babel/preset-react": "^7.14.5",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^6.4.0",
     "express": "^4.12.3",
+    "less": "^4.1.2",
+    "less-loader": "^10.1.0",
+    "mini-css-extract-plugin": "^2.4.2",
     "ngraph.generators": "0.0.15",
     "react-hot-loader": "^1.2.7",
-    "webpack-dev-server": "^1.9.0"
+    "webpack-cli": "^4.9.0",
+    "webpack-dev-server": "4.3.1"
   },
   "dependencies": {
-    "babel-core": "^5.2.17",
-    "babel-loader": "^5.0.0",
     "bluebird": "^2.9.25",
     "bootstrap": "^3.3.4",
-    "css-loader": "^0.12.0",
-    "extract-text-webpack-plugin": "^0.8.0",
-    "file-loader": "^0.8.1",
     "history": "^1.17.0",
-    "json-loader": "^0.5.7",
     "keymirror": "^0.1.1",
-    "less": "^2.5.0",
-    "less-loader": "^2.2.0",
     "maco": "^2.0.3",
+    "mini-css-extract-plugin": "^2.4.2",
     "ngraph.events": "0.0.3",
     "node-libs-browser": "^0.5.0",
-    "qs": "^4.0.0",
+    "qs": "6.10.1",
     "rafor": "^1.0.2",
     "react": "^0.14.5",
     "react-bootstrap": "^0.28.1",
@@ -56,8 +58,7 @@
     "style-loader": "^0.12.2",
     "three.orientation": "^1.1.0",
     "unrender": "git+https://github.com/anvaka/unrender.git",
-    "url-loader": "^0.5.5",
     "webgl-enabled": "^1.0.3",
-    "webpack": "^1.9.11"
+    "webpack": "5.58.2"
   }
 }

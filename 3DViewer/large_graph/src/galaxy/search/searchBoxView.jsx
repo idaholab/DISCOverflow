@@ -1,7 +1,7 @@
 import React from 'react';
 import searchBoxModel from './searchBoxModel.js';
 
-module.exports = require('maco')(searchBar, React);
+let SearchBar = require('maco')(searchBar, React);
 
 function searchBar(x) {
   x.render = function () {
@@ -37,3 +37,5 @@ function searchBar(x) {
     e.preventDefault();
   }
 }
+
+export default SearchBar;
